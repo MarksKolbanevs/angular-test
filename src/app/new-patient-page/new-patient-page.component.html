@@ -1,0 +1,58 @@
+<main class="full-screen centered">
+    <section class="new-patient">
+        <!-- This block will be displayed first, you can add as many blocks as you need -->
+        <div class="new-patient-container" *ngIf="currentStep === 1">
+            <header>
+                <h1>Select a doctor</h1>
+                <input placeholder="Search a doctor ..." (input)="searchDoctorByName($event)"/>
+            </header>
+            <div class="doctors-grid">
+                <ng-container *ngFor="let doctor of doctors">
+                    <button (click)="selectDoctor(doctor)" [class]="doctor.id === selectedDoctor.id ? 'selected' : ''">
+                        <img [src] = "getDoctorImage(doctor)"/>
+                        <h2>{{doctor.name}}</h2>
+                        <p class="italic dark-grey">{{doctor.specialisation}}</p>
+                    </button>
+                </ng-container>
+            </div>
+            <app-button-accented src="./assets/svg/arrow.svg" (click)="navigateToStep(2)"/>
+        </div>
+        <!-- This block will be displayed second, you can add as many blocks as you need -->
+        <div class="new-patient-container" *ngIf="currentStep === 2">
+            <header>
+                <h1>Patient registration</h1>
+            </header>
+            <form class="white" (ngSubmit)="createPatient()" [formGroup]="patientForm">
+                <h2>Main</h2>
+                <section>
+                    <input placeholder="Name (required)" formControlName="name" class="mandatory" [ngClass]="{ 'warning': !formIsValid || patientForm.get('name')?.invalid && patientForm.get('name')?.touched }"/>
+                    <input placeholder="Surname (required)" formControlName="surname"  class="mandatory" [ngClass]="{ 'warning': !formIsValid || patientForm.get('surname')?.invalid && patientForm.get('surname')?.touched }"/>
+                    <input placeholder="Email (required)" formControlName="email" class="mandatory" [ngClass]="{ 'warning': !formIsValid || patientForm.get('email')?.invalid && patientForm.get('email')?.touched }"/>
+                    <input placeholder="Phone" formControlName="phone"/>
+                </section>
+                <h2>Address</h2>   
+                <section>
+                    <input placeholder="Street adress (required)" class="span-2" class="mandatory" formControlName="streetAdress" [ngClass]="{ 'warning': !formIsValid || patientForm.get('streetAdress')?.invalid && patientForm.get('streetAdress')?.touched }"/>
+                    <input placeholder="City" formControlName="city"/>
+                    <input placeholder="Region" formControlName="region"/>
+                </section>
+                <h2>Date</h2> 
+                <section>
+                    <input placeholder="Year (required)" formControlName="year" class="mandatory" [ngClass]="{ 'warning': !formIsValid || patientForm.get('year')?.invalid && patientForm.get('year')?.touched }"/>
+                    <input placeholder="Month (required)" formControlName="month" class="mandatory" [ngClass]="{ 'warning': !formIsValid || patientForm.get('month')?.invalid && patientForm.get('month')?.touched }"/>
+                    <input placeholder="Day (required)" formControlName="day" class="mandatory" [ngClass]="{ 'warning': !formIsValid || patientForm.get('day')?.invalid && patientForm.get('day')?.touched }"/>
+                </section>
+                <app-button-accented src="./assets/svg/arrow.svg"/>
+            </form>
+        </div>
+        <!-- This is proceed bar that will show current step, you can add as many steps as you need -->
+        <div class="proceed-bar">
+            <ng-container *ngFor="let step of steps; let i = index, last as isLast">
+              <button [class]="i < currentStep ? 'completed' : ''" (click)="navigateToStep(i + 1)">
+                {{ i + 1 }}
+              </button>
+              <div class="line" [class]="i < currentStep ? 'completed' : ''" *ngIf="!isLast"></div> <!-- Line won't be displayed if it is a last step -->
+            </ng-container>
+          </div>          
+    </section>
+</main>

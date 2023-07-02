@@ -1,0 +1,8 @@
+<button class="accented-button">
+    <ng-container *ngIf="src">
+        <img [src]="src" />
+    </ng-container>
+    <ng-container *ngIf="text">
+        {{text}}
+    </ng-container>
+</button>

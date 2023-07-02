@@ -1,1 +1,103 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+/* Colors */
+$background:#F9F9F9;
+$white:#FFFFFF;
+$grey:#E6E8EA;
+$dark-grey:#BCC0CC;
+$dark-blue:#111F4A;
+$light-blue:#686E8E;
+$accent:#6DC9B7;
+$warning:#F9A21B;
+$error:#EF2E22;
+
+/* Global styles */
+*{
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: $dark-blue;
+}
+
+body,html{
+    background-color: $background;
+}
+
+table,th,td,tr{
+    border-collapse: collapse;
+}
+
+table{
+    width: 100%;
+}
+
+h1{
+    font-size: 50px;
+    font-style: italic;
+}
+
+h2{
+    font-size: 20px;
+}
+
+h3{
+    font-size: 12px;
+}
+
+p{
+    font-size: 14px;
+}
+
+button,input{
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+input{
+    border-radius: 8px;
+    background-color: #F3F8FC;
+    padding: 15px;
+}
+
+section{
+    max-width: 1440px;
+    min-width: 320px;
+    width: 100%;
+}
+
+/* Global classes */
+.white{
+    background-color: $white;
+}
+.dark-grey{
+    color: $dark-grey;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.full-screen{
+    position: absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+}
+
+.centered{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+//Medias
+
+@media screen and (max-width:600px) {
+    main{
+        background-color: $white;
+        justify-content: flex-start !important;
+    }
+}

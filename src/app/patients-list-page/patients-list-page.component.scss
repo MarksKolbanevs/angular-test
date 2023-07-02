@@ -1,0 +1,60 @@
+@import '../../styles.scss';
+
+.patients-list{
+    header{
+        background-color: white;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        padding: 35px 25px 30px 25px;
+        display: flex;
+        flex-direction: column;
+        gap:25px;
+        .action-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap:20px;
+            input{
+                width: 100%;
+            }
+        }
+    }
+    table{
+        margin-top: 15px;
+        padding: 10px;
+        thead tr{
+            font-size: 16px;
+        }
+        td{
+            svg{ // Bin image
+                width: 20px;
+                transition: 0.2s ease;
+                &:hover{
+                    fill:$error;
+                }
+            }
+        }
+        tbody td, thead th{
+            padding: 35px 25px 35px 25px;
+            text-align: left;
+            font-size: 16px;
+        }
+        tbody tr{
+            background: #FFF;
+            box-shadow: 2px 2px 15px 0px rgba(0, 0, 0, 0.05);
+            transition: 0.4s ease;
+            &:hover{
+               background: #fafbfd !important; 
+            }
+        }
+    }
+}
+
+@media screen and (max-width:465px) {
+    .hide-on-small-screen{
+        display: none;
+    }
+    tbody td, thead th{
+        padding: 25px 15px 25px 15px !important;
+    }
+}
